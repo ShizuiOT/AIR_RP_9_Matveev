@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'db_show',
     'rest_framework',
     'api',
+    'drf_spectacular'
 
 ]
 
@@ -127,3 +128,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'DB SOFTWARE API',
+    'DESCRIPTION': 'Предназначена для вывода и ввода данных в БД SOFTWARE',
+    'VERSION': '0.0.01',
+    'SERVE_INCLUDE_SCHEMA': False,
+}

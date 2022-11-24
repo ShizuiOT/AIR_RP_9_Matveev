@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('getSoftwareView/<str:Disciline>/<str:OpSys>/<str:Name>/<str:Practicum_Num>',
+    path('getSoftwareView/<str:Discipline>/<str:OpSys>/<str:Name>/<str:Practicum_Num>',
          views.SoftwareView.as_view(), name="Getter"),
-    path('setSoftwareView/<str:Disciline>/<str:OpSys>/<str:Name>/<str:Practicum_Num>',
+    path('setSoftwareView/<str:Discipline>/<str:OpSys>/<str:Name>/<str:Practicum_Num>',
          views.SoftwareView.as_view(), name="Setter")
 ]

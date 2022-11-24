@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: DB SOFTWARE API
+  version: 0.0.01
+  description: Предназначена для вывода и ввода данных в БД SOFTWARE
+paths:
+  /api/getSoftwareView/{Discipline}/{OpSys}/{Name}/{Practicum_Num}:
+    get:
+      operationId: api_getSoftwareView_retrieve
+      parameters:
+      - in: path
+        name: Discipline
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: Name
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: OpSys
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: Practicum_Num
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Software'
+          description: ''
+  /api/setSoftwareView/{Discipline}/{OpSys}/{Name}/{Practicum_Num}:
+    get:
+      operationId: api_setSoftwareView_retrieve
+      parameters:
+      - in: path
+        name: Discipline
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: Name
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: OpSys
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: Practicum_Num
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Software'
+          description: ''
+components:
+  schemas:
+    Software:
+      type: object
+      properties:
+        id:
+          type: integer
+        Discipline:
+          type: string
+        OpSys:
+          type: string
+        Name:
+          type: string
+        Practicum_Num:
+          type: string
+      required:
+      - Discipline
+      - Name
+      - OpSys
+      - Practicum_Num
+      - id
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

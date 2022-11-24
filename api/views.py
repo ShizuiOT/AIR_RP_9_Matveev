@@ -4,10 +4,11 @@ from rest_framework.views import APIView
 from .models import Software
 from .serializers import SoftwareSerializer
 from db_save.func import getSoftware, addSoftware
+from drf_spectacular.utils import extend_schema
 
 class SoftwareView(APIView):
 
-
+    @extend_schema(request=SoftwareSerializer, responses=SoftwareSerializer)
 
     def get(self, request, Discipline, OpSys, Name, Practicum_Num):
 

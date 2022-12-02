@@ -6,23 +6,18 @@ from .serializers import SoftwareSerializer
 from db_save.func import getSoftware, addSoftware
 from drf_spectacular.utils import extend_schema
 
-class SoftwareView(APIView):
 
+class getSoftwareView(APIView):
     @extend_schema(request=SoftwareSerializer, responses=SoftwareSerializer)
-
     def get(self, request, Discipline, OpSys, Name, Practicum_Num):
+        conference = getSoftware(Discipline, OpSys, Name, Practicum_Num)
+        print(conference)
+        conference = (SoftwareSerializer(instance=st).data for st in conference) if conference is not None else []
 
-        a = getSoftware(Discipline, OpSys, Name, Practicum_Num)
-        print(a)
-        a = (SoftwareSerializer(instance=st).data for st in a) if a is not None else []
+        return Response(conference)
 
-        return Response(a)
-
-
-    def set(self, request, Discipline, OpSys, Name, Practicum_Num):
-
-        a = addSoftware(Discipline, OpSys, Name, Practicum_Num)
-        a.Discipline = SoftwareSerializer(instance=a.Discipline).data
-        a.OpSys = SoftwareSerializer(instance=a.OpSys).data
-        a.Name = SoftwareSerializer(instance=a.Name).data
-        a.Practicum_Num = SoftwareSerializer(instance=a.Practicum_Num).data
+class AddSoftwareView(APIView):
+    @extend_schema(request=SoftwareSerializer, responses=SoftwareSerializer)
+    def get(self, request, Discipline, OpSys, Name, Practicum_Num):
+        conference = addSoftware(Discipline, OpSys, Name, Practicum_Num)
+        return Response(conference)

@@ -5,13 +5,13 @@ import sqlite3
 def addSoftware (Discipline, OpSys, Name, Practicum_Num):
     connection = sqlite3.connect("db.sqlite3")
     connection.row_factory = sqlite3.Row
-    curs = connection.cursor()
-    curs.execute('INSERT INTO db_save_software ("Discipline","OpSys","Name","Practicum_Num") VALUES (?,?,?,?)'
-                 ' RETURNING *', (Discipline, OpSys, Name, Practicum_Num))
-    row = curs.fetchone()
-    curs.close()
+    cursor = connection.cursor()
+    cursor.execute('INSERT INTO db_save_software ("Discipline","OpSys","Name","Practicum_Num") VALUES (?,?,?,?)'
+    , (Discipline, OpSys, Name, Practicum_Num))
+    row = cursor.fetchone()
+    cursor.close()
     connection.commit()
-    return dict(row)
+    return dict({'message':"Призошло добавление:"})
 
 
 def getSoftware (Discipline, OpSys, Name, Practicum_Num):

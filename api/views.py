@@ -18,6 +18,6 @@ class getSoftwareView(APIView):
 
 class AddSoftwareView(APIView):
     @extend_schema(request=SoftwareSerializer, responses=SoftwareSerializer)
-    def get(self, request, Discipline, OpSys, Name, Practicum_Num):
+    def post(self, request, Discipline, OpSys, Name, Practicum_Num):
         conference = addSoftware(Discipline, OpSys, Name, Practicum_Num)
         return Response(conference)
